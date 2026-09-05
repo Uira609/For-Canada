@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="輸入名字與專屬密碼，閱讀 Nolan 寫給你的信。" />
+    <title>給朋友的話</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main id="app" class="welcome-stage">
+      <div class="red-rail rail-left"></div>
+      <div class="red-rail rail-right"></div>
+      <section class="welcome-card" aria-labelledby="welcome-title">
+        <div class="maple-mark" aria-hidden="true">🍁</div>
+        <p class="eyebrow">A PRIVATE NOTE FROM NOLAN</p>
+        <h1 id="welcome-title">A letter<br /><em>just for you.</em></h1>
+        <p class="intro">輸入你的名字與專屬密碼，打開只屬於你的信。</p>
+        <form id="letter-form" novalidate>
+          <label for="friend-name">YOUR NAME</label>
+          <input id="friend-name" autocomplete="username" placeholder="Your name" required />
+          <label for="friend-code">PRIVATE CODE</label>
+          <input id="friend-code" type="password" autocomplete="current-password" placeholder="Your private code" required />
+          <button id="open-button" type="submit">OPEN MY LETTER →</button>
+          <p id="error" class="error-message" aria-live="polite"></p>
+        </form>
+        <p class="footer-note">Private memories, made in Canada <span>🍁</span></p>
+      </section>
+    </main>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
