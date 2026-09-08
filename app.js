@@ -17,6 +17,7 @@ function bindLogin() {
     event.preventDefault();
     const name = document.querySelector("#friend-name").value.trim();
     const code = document.querySelector("#friend-code").value;
+    const loginName = name === "이태이" ? "태이" : name;
     if (!name || !code) return;
     button.disabled = true;
     button.textContent = "OPENING…";
@@ -25,10 +26,16 @@ function bindLogin() {
       const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, code }),
+        body: JSON.stringify({ name: loginName, code }),
       });
       if (!response.ok) throw new Error("invalid");
-      renderLetter(await response.json());
+      const letter = await response.json();
+      if (name === "이태이") {
+        letter.displayName = "이태이";
+        letter.native.greeting = "태이에게";
+        letter.english.greeting = "Dear Dalia";
+      }
+      renderLetter(letter);
     } catch {
       error.textContent = "The name or private code is incorrect. Please try again.";
     } finally {
