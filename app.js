@@ -47,7 +47,7 @@ function renderLetter(letter) {
     <article class="letter" aria-labelledby="letter-title">
       <div class="letter-heading"><div><p class="route">${escapeHtml(letter.accent)}</p><h1 id="letter-title"></h1></div><span class="country-stamp">${escapeHtml(letter.flag)}<small>${escapeHtml(letter.country)}</small></span></div>
       <div class="photo-strip"><div class="photo-slot left">OUR PHOTO<small>01</small></div><div class="photo-slot right">OUR PHOTO<small>02</small></div></div>
-      <div class="language-switch"><button data-language="native" class="active">${escapeHtml(letter.nativeLabel)}</button><button data-language="english">English</button></div>
+      <div class="language-switch" role="group" aria-label="Letter language"><button data-language="native" class="active">${escapeHtml(letter.nativeLabel)}</button><button data-language="english">English</button>${letter.taiwanese ? '<button data-language="taiwanese">台灣語</button>' : ""}</div>
       <div id="letter-copy" class="letter-copy"></div>
       <p id="letter-signoff" class="letter-signoff"></p>
       <button id="back" class="letter-back">← 登出</button>
@@ -57,13 +57,18 @@ function renderLetter(letter) {
     document.querySelector("#letter-title").textContent = copy.greeting;
     document.querySelector("#letter-copy").innerHTML = copy.paragraphs.length
       ? copy.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")
-      : `<p class="draft-note">${language === "native" ? "편지를 준비하고 있어요. 조금만 기다려 주세요 🍁" : "Your letter is being written. Please check back soon 🍁"}</p>`;
+      : `<p class="draft-note">${language === "taiwanese" ? "信件準備中，請再稍等一下 🍁" : language === "native" ? (letter.nativeLabel === "日本語" ? "手紙を準備しています。もう少し待っていてね 🍁" : "편지를 준비하고 있어요. 조금만 기다려 주세요 🍁") : "Your letter is being written. Please check back soon 🍁"}</p>`;
     document.querySelector("#letter-signoff").textContent = copy.signoff;
-    document.querySelectorAll("[data-language]").forEach((item) => item.classList.toggle("active", item.dataset.language === language));
+    document.querySelectorAll("[data-language]").forEach((item) => {
+      const selected = item.dataset.language === language;
+      item.classList.toggle("active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
   }
 
   document.querySelector("[data-language=native]").addEventListener("click", () => show(native, "native"));
   document.querySelector("[data-language=english]").addEventListener("click", () => show(english, "english"));
+  if (letter.taiwanese) document.querySelector("[data-language=taiwanese]").addEventListener("click", () => show(letter.taiwanese, "taiwanese"));
   document.querySelector("#back").addEventListener("click", () => {
     app.className = "welcome-stage";
     app.innerHTML = initialMarkup;
