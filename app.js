@@ -30,7 +30,7 @@ function bindLogin() {
       if (!response.ok) throw new Error("invalid");
       renderLetter(await response.json());
     } catch {
-      error.textContent = "名字或專屬密碼不正確，請再試一次。";
+      error.textContent = "The name or private code is incorrect. Please try again.";
     } finally {
       button.disabled = false;
       button.textContent = "OPEN MY LETTER →";
@@ -46,10 +46,10 @@ function renderLetter(letter) {
     <header class="canada-bar"><span>🍁</span><b>FRIENDS ACROSS THE WORLD</b><span>🍁</span></header>
     <article class="letter" aria-labelledby="letter-title">
       <div class="letter-heading"><div><p class="route">${escapeHtml(letter.accent)}</p><h1 id="letter-title"></h1></div><span class="country-stamp">${escapeHtml(letter.flag)}<small>${escapeHtml(letter.country)}</small></span></div>
-      <div class="language-switch" role="group" aria-label="Letter language"><button data-language="native" class="active">${escapeHtml(letter.nativeLabel)}</button><button data-language="english">English</button>${letter.taiwanese ? '<button data-language="taiwanese">台灣語</button>' : ""}</div>
+      <div class="language-switch" role="group" aria-label="Letter language"><button data-language="english" class="active">English</button><button data-language="native">${escapeHtml(letter.nativeLabel)}</button>${letter.taiwanese ? '<button data-language="taiwanese">台灣語</button>' : ""}</div>
       <div id="letter-copy" class="letter-copy"></div>
       <p id="letter-signoff" class="letter-signoff"></p>
-      <button id="back" class="letter-back">← 登出</button>
+      <button id="back" class="letter-back">← Sign out</button>
     </article>`;
 
   function show(copy, language) {
@@ -73,7 +73,7 @@ function renderLetter(letter) {
     app.innerHTML = initialMarkup;
     bindLogin();
   });
-  show(native, "native");
+  show(english, "english");
 }
 
 bindLogin();
