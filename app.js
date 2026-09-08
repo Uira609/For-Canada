@@ -46,7 +46,6 @@ function renderLetter(letter) {
     <header class="canada-bar"><span>🍁</span><b>FRIENDS ACROSS THE WORLD</b><span>🍁</span></header>
     <article class="letter" aria-labelledby="letter-title">
       <div class="letter-heading"><div><p class="route">${escapeHtml(letter.accent)}</p><h1 id="letter-title"></h1></div><span class="country-stamp">${escapeHtml(letter.flag)}<small>${escapeHtml(letter.country)}</small></span></div>
-      <div class="photo-strip"><div class="photo-slot left">OUR PHOTO<small>01</small></div><div class="photo-slot right">OUR PHOTO<small>02</small></div></div>
       <div class="language-switch" role="group" aria-label="Letter language"><button data-language="native" class="active">${escapeHtml(letter.nativeLabel)}</button><button data-language="english">English</button>${letter.taiwanese ? '<button data-language="taiwanese">台灣語</button>' : ""}</div>
       <div id="letter-copy" class="letter-copy"></div>
       <p id="letter-signoff" class="letter-signoff"></p>
