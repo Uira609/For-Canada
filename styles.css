@@ -15,6 +15,7 @@ form { display: grid; gap: 10px; max-width: 420px; margin: auto; text-align: lef
 label { margin-top: 8px; color: #51483e; }
 input { width: 100%; min-height: 52px; border: 1px solid #b9aa94; background: #fff; border-radius: 2px; padding: 0 15px; font-family: Arial, sans-serif; font-size: 1rem; }
 input:focus { outline: 3px solid rgba(183,25,49,.18); border-color: #b71931; }
+.password-mask { -webkit-text-security: disc; }
 button { cursor: pointer; }
 #open-button { min-height: 54px; margin-top: 12px; border: 0; color: #fff; background: #b71931; font-family: Arial, sans-serif; font-weight: 800; letter-spacing: .09em; }
 #open-button:disabled { opacity: .65; cursor: wait; }
