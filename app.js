@@ -1,4 +1,4 @@
-const API_URL = "https://notes-for-friends.uira609.chatgpt.site/api/letter?v=20260908-name-update";
+const API_URL = "https://notes-for-friends.uira609.chatgpt.site/api/letter?v=20260908-greeting-update";
 const app = document.querySelector("#app");
 const initialMarkup = app.innerHTML;
 
