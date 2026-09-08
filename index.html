@@ -20,7 +20,7 @@
           <label for="friend-name">YOUR NAME</label>
           <input id="friend-name" autocomplete="username" placeholder="Your name" required />
           <label for="friend-code">PRIVATE CODE</label>
-          <input id="friend-code" type="password" autocomplete="current-password" placeholder="Your private code" required />
+          <input id="friend-code" class="password-mask" type="text" inputmode="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Your private code" required />
           <button id="open-button" type="submit">OPEN MY LETTER →</button>
           <p id="error" class="error-message" aria-live="polite"></p>
         </form>
